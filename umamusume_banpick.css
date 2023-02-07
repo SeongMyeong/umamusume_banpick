@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'uma';
+  src: url('Title_Medium.otf');
+  /* src: url('Title_Bold.woff'); */
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'uma';
+  margin: 0;
+  padding: 0;
+}
+  
+#stage {
+  margin: 0 auto;
+  width: 600px;
+  padding: 0 0 40px;
+}
+  
+.character_area img {
+  width: 50px;
+  height: 50px;
+}
+
+/* character 한글 이름 */
+.character_area .h_name {
+
+}
+
+/* character 영문 이름 */
+.character_area .e_name {
+
+}
