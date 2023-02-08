@@ -17,10 +17,11 @@ body {
   width: 600px;
   padding: 0 0 40px;
 }
-  
-.character_area img {
-  width: 50px;
-  height: 50px;
+
+/* character image */
+.character_area img{
+  width: 80px;
+  height: 100px;
 }
 
 /* character 한글 이름 */

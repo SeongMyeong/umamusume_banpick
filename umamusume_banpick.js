@@ -1,14 +1,33 @@
-const data = require('./assets/characters.json')
+/**
+ * Read Characters Information
+ */
+function readFile(event) {
+    event.preventDefault(); //submit 할때 새로고침 되는것을 방지
+    let fileObject = document.getElementById("input_file");
+    let fileName = fileObject.files[0];
 
-console.log(data)
+    let fr = new FileReader();
+    fr.readAsText(fileName, "utf-8");
 
-const jsonData = new Promise((resolve, reject) => {
-	fetch('./assets/characters.json')
-	.then(res => {
-		resolve(res.json())
-	}).catch(err => {
-		reject(err)
-	})
-})
+    // after file loaded
+    fr.onload = () => {
+        parseText(fr.result);
+    }
+}
 
-console.log(jsonData)
+function parseText(text) {
+    console.log(text);
+    displayWrapper(text);
+}
+
+/**
+ * Wrapper 에 내용 display
+ */
+function displayWrapper(target) {
+    const wrapper = document.getElementById('character_wrapper');
+    
+}
+
+function makeCharacterArea(target) {
+
+}

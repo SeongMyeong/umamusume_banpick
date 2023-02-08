@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="./umamusume_banpick.css">        
-        
+        <link rel="stylesheet" href="./umamusume_banpick.css">
     </head>
-    <!-- <body> <py-script src = "SlotMachine.py"></py-script> </body> -->
     <body>
-        <div class="character_area" style="border-style: solid;">
-            <image src="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png"></image>
-            <image src="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png"></image>
-            <image src="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png"></image>
-            캐릭터 창 - 캐릭터들을 이미지로 뿌려줄거
+        <div>
+            <label for="input_file">파일을 추가해주세요.</label>
+            <input type="file" id="input_file">
         </div>
+        <div>
+            <button onclick="readFile(event)">말딸들 읽어오기</button>
+        </div>
+        
+        <div id="character_wrapper">
+            <div class="character_area" style="border-style: solid;">
+                <image src="./assets/images/image1_temp.png"></image>
+                <div class="h_name">한글이름</div>
+                <div class="e_name">영문이름</div>
+            </div>
+            <div class="character_area" style="border-style: solid;">
+                <image src="./assets/images/image1_temp.png"></image>
+                <div class="h_name">한글이름</div>
+                <div class="e_name">영문이름</div>
+            </div>
+            <div class="character_area" style="border-style: solid;">
+                <image src="./assets/images/image1_temp.png"></image>
+                <div class="h_name">한글이름</div>
+                <div class="e_name">영문이름</div>
+            </div>
+        </div>
+        
         <div style="border-style: solid;">
             인풋박스 - 캐릭터 이름으로 찾기 가능(한글 영문 둘 다 가능하게끔 구현 예정)
         </div>
@@ -19,7 +37,6 @@
             사용자의 밴픽 선택 - 캐릭터 창에서 이미지 선택 후 확인 버튼선택?</br>
             혹은 뜬 이미지를 드래그 앤 드랍해서 내 창으로 옮겨놓기
         </div>
-        
+        <script type="text/javascript" src="./umamusume_banpick.js"></script>
     </body>
-      
 </html>
