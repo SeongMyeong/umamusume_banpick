@@ -4,25 +4,25 @@
             "id": 1,
             "h_name": "한글이름1",
             "e_name": "영문이름1",
-            "image": "image1_temp.png"
+            "image": "big.png"
         },
         {
             "id": 2,
             "h_name": "한글이름2",
             "e_name": "영문이름2",
-            "image": "image1_temp.png"
+            "image": "agemasen.png"
         },
         {
             "id": 3,
             "h_name": "한글이름3",
             "e_name": "영문이름3",
-            "image": "image1_temp.png"
+            "image": "curren.png"
         },
         {
             "id": 4,
             "h_name": "한글이름4",
             "e_name": "영문이름4",
-            "image": "image1_temp.png"
+            "image": "city.png"
         }
     ]
 }

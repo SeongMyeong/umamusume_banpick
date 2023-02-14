@@ -25,6 +25,43 @@ function parseText(text) {
  */
 function displayWrapper(target) {
     const wrapper = document.getElementById('character_wrapper');
+    const assetRoot = './assets/images/icon_square/';
+
+    const targetArray = JSON.parse(target)["characters"];
+    targetArray.forEach(el => {
+        const characterId = el.id;
+        const characterHName = el.h_name;
+        const characterEName = el.e_name;
+        const characterImage = assetRoot + el.image;
+
+        // make character area element
+        let characterAreaElement = document.createElement('div');
+        characterAreaElement.className = 'character_area';
+        characterAreaElement.style.borderStyle = 'solid';
+
+        // make character image element
+        let characterImageElement = document.createElement('img');
+        characterImageElement.src = characterImage;
+        
+        // make character h_name element
+        let characterHNameElement = document.createElement('div');
+        characterHNameElement.className = 'h_name';
+        characterHNameElement.textContent = characterHName;
+
+        // make character e_name element
+        let characterENameElement = document.createElement('div');
+        characterENameElement.className = 'e_name';
+        characterENameElement.textContent = characterEName;
+
+        // append character elements to character_area
+        characterAreaElement.appendChild(characterImageElement);
+        characterAreaElement.appendChild(characterHNameElement);
+        characterAreaElement.appendChild(characterENameElement);
+
+        // append character_area to character_wrapper
+        wrapper.appendChild(characterAreaElement);
+    })
+    
     
 }
 
