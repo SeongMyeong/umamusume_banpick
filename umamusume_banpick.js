@@ -61,8 +61,6 @@ function displayWrapper(target) {
         // append character_area to character_wrapper
         wrapper.appendChild(characterAreaElement);
     })
-    
-    
 }
 
 function makeCharacterArea(target) {

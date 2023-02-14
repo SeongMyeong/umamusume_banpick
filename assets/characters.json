@@ -1,27 +1,27 @@
 {    
     "characters": [
         {
-            "id": 1,
+            "id": "big",
             "h_name": "한글이름1",
-            "e_name": "영문이름1",
+            "e_name": "big",
             "image": "big.png"
         },
         {
-            "id": 2,
+            "id": "agemasen",
             "h_name": "한글이름2",
-            "e_name": "영문이름2",
+            "e_name": "agemasen",
             "image": "agemasen.png"
         },
         {
-            "id": 3,
+            "id": "curren",
             "h_name": "한글이름3",
-            "e_name": "영문이름3",
+            "e_name": "curren",
             "image": "curren.png"
         },
         {
-            "id": 4,
+            "id": "city",
             "h_name": "한글이름4",
-            "e_name": "영문이름4",
+            "e_name": "city",
             "image": "city.png"
         }
     ]

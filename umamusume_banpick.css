@@ -11,12 +11,6 @@ body {
   margin: 0;
   padding: 0;
 }
-  
-#stage {
-  margin: 0 auto;
-  width: 600px;
-  padding: 0 0 40px;
-}
 
 /* character image */
 .character_area img{
