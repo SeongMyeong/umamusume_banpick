@@ -12,18 +12,32 @@ body {
   padding: 0;
 }
 
+.character_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+}
+
+.character_item {
+  margin: 5px 5px 5px 5px;
+  width: 150px;
+  /* flex-basis: 50px; */
+  text-align: center;
+  align-items: center;
+}
 /* character image */
-.character_area img{
-  width: 80px;
+.character_item .character_image{
+  max-width: 100%;
   height: 100px;
 }
 
 /* character 한글 이름 */
-.character_area .h_name {
-
+.character_item .h_name {
+  width: 100%;
 }
 
 /* character 영문 이름 */
-.character_area .e_name {
-
+.character_item .e_name {
+  width: 100%;
 }

@@ -36,11 +36,12 @@ function displayWrapper(target) {
 
         // make character area element
         let characterAreaElement = document.createElement('div');
-        characterAreaElement.className = 'character_area';
+        characterAreaElement.className = 'character_item';
         characterAreaElement.style.borderStyle = 'solid';
 
         // make character image element
         let characterImageElement = document.createElement('img');
+        characterImageElement.className = "character_image"
         characterImageElement.src = characterImage;
         
         // make character h_name element
