@@ -27,9 +27,13 @@ body {
   align-items: center;
 }
 /* character image */
-.character_item .character_image{
+.character_item .character_image {
   max-width: 100%;
   height: 100px;
+}
+
+.character_item .character_image.banned {
+  opacity: 10%;
 }
 
 /* character 한글 이름 */

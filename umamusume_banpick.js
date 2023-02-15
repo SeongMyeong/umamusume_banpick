@@ -35,13 +35,14 @@ function displayWrapper(target) {
         const characterImage = assetRoot + el.image;
 
         // make character area element
-        let characterAreaElement = document.createElement('div');
-        characterAreaElement.className = 'character_item';
-        characterAreaElement.style.borderStyle = 'solid';
+        let characterItemElement = document.createElement('div');
+        characterItemElement.className = 'character_item';
+        characterItemElement.id = characterId;
+        characterItemElement.style.borderStyle = 'solid';
 
         // make character image element
         let characterImageElement = document.createElement('img');
-        characterImageElement.className = "character_image"
+        characterImageElement.className = 'character_image'
         characterImageElement.src = characterImage;
         
         // make character h_name element
@@ -55,15 +56,17 @@ function displayWrapper(target) {
         characterENameElement.textContent = characterEName;
 
         // append character elements to character_area
-        characterAreaElement.appendChild(characterImageElement);
-        characterAreaElement.appendChild(characterHNameElement);
-        characterAreaElement.appendChild(characterENameElement);
+        characterItemElement.appendChild(characterImageElement);
+        characterItemElement.appendChild(characterHNameElement);
+        characterItemElement.appendChild(characterENameElement);
 
         // append character_area to character_wrapper
-        wrapper.appendChild(characterAreaElement);
+        wrapper.appendChild(characterItemElement);
+
+        characterItemElement.addEventListener('click', selectCharacter);
     })
 }
 
-function makeCharacterArea(target) {
-
+function selectCharacter (event) {
+    
 }
