@@ -1,3 +1,5 @@
+let charactersArray = [];
+let filteredArray = [];
 /**
  * Read Characters Information
  */
@@ -11,34 +13,33 @@ function readFile(event) {
 
     // after file loaded
     fr.onload = () => {
-        parseText(fr.result);
+        displayContainer(fr.result);
     }
 }
 
-function parseText(text) {
-    console.log(text);
-    displayWrapper(text);
-}
-
 /**
- * Wrapper 에 내용 display
+ * Container container display
  */
-function displayWrapper(target) {
-    const wrapper = document.getElementById('character_wrapper');
+function displayContainer(target) {
+    const container = document.getElementById('character_container');
     const assetRoot = './assets/images/icon_square/';
 
     const targetArray = JSON.parse(target)["characters"];
-    targetArray.forEach(el => {
+    charactersArray = cloneDeep(targetArray);
+    console.log(targetArray)
+    console.log(charactersArray)
+
+    charactersArray.forEach(el => {
         const characterId = el.id;
         const characterHName = el.h_name;
         const characterEName = el.e_name;
-        const characterImage = assetRoot + el.image;
+        const characterImage = assetRoot + el.image + '.png';
 
         // make character area element
-        let characterItemElement = document.createElement('div');
-        characterItemElement.className = 'character_item';
-        characterItemElement.id = characterId;
-        characterItemElement.style.borderStyle = 'solid';
+        let characterItemWrapper = document.createElement('div');
+        characterItemWrapper.className = 'character_item_wrapper';
+        characterItemWrapper.id = characterId;
+        characterItemWrapper.style.borderStyle = 'solid';
 
         // make character image element
         let characterImageElement = document.createElement('img');
@@ -47,26 +48,74 @@ function displayWrapper(target) {
         
         // make character h_name element
         let characterHNameElement = document.createElement('div');
-        characterHNameElement.className = 'h_name';
+        characterHNameElement.className = 'character_h_name';
         characterHNameElement.textContent = characterHName;
 
         // make character e_name element
         let characterENameElement = document.createElement('div');
-        characterENameElement.className = 'e_name';
+        characterENameElement.className = 'character_e_name';
         characterENameElement.textContent = characterEName;
 
         // append character elements to character_area
-        characterItemElement.appendChild(characterImageElement);
-        characterItemElement.appendChild(characterHNameElement);
-        characterItemElement.appendChild(characterENameElement);
+        characterItemWrapper.appendChild(characterImageElement);
+        characterItemWrapper.appendChild(characterHNameElement);
+        characterItemWrapper.appendChild(characterENameElement);
 
         // append character_area to character_wrapper
-        wrapper.appendChild(characterItemElement);
+        container.appendChild(characterItemWrapper);
 
-        characterItemElement.addEventListener('click', selectCharacter);
+        characterItemWrapper.addEventListener('click', selectCharacter);
     })
 }
 
+/**
+ * select character wrapper div, turn origin -> banned, banned -> origin 
+ * @param {*} event
+ * should to refactoring
+ */
 function selectCharacter (event) {
-    
+    let targetClassName = event.target.className;
+
+    // click wrapper itself
+    if (targetClassName.includes('wrapper')) {
+        if (targetClassName.includes('banned')) {
+            this.className = 'character_item_wrapper'
+        } else {
+            this.className = 'character_item_wrapper banned'
+        }
+    }
 }
+
+function onChangeCharacterFindBox (event) {
+    console.log(event.target)
+}
+
+// <<<<<<< inner private function
+
+/**
+ * Array DeepCopy
+ * @param {Array} targetObject 
+ * @returns copied array
+ */
+function cloneDeep (targetObject) {
+    const clone = [];
+
+    targetObject.forEach(el => {
+        clone.push(el);
+    });
+
+    return clone;
+}
+
+// <<<<<<< init function after window onloaded
+function initInputBox() {
+    const inputBox = document.getElementById('character_find_input')
+    inputBox.addEventListener('input', (input) => {
+        let newValue = input.target.value;
+        inputBox.value = newValue;
+    })
+}
+
+window.onload = (event) => {
+    initInputBox();
+};
