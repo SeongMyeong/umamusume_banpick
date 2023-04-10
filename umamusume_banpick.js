@@ -13,21 +13,67 @@ function readFile(event) {
 
     // after file loaded
     fr.onload = () => {
-        displayContainer(fr.result);
+        initContainer(fr.result);
     }
 }
 
 /**
  * Container container display
  */
-function displayContainer(target) {
-    const container = document.getElementById('character_container');
-    const assetRoot = './assets/images/icon_square/';
-
+function initContainer(target) {
     const targetArray = JSON.parse(target)["characters"];
     charactersArray = cloneDeep(targetArray);
-    console.log(targetArray)
-    console.log(charactersArray)
+
+    displayCharacters(charactersArray)
+    
+}
+
+/**
+ * select character wrapper div, turn origin -> banned, banned -> origin 
+ * @param {*} event
+ * should to refactoring
+ */
+function selectCharacter (event) {
+    let targetDiv = event.target;
+    let targetDivContainer = $(targetDiv).parent()[0];
+    let targetClassName = targetDivContainer.className;
+
+    // click wrapper itself
+    if (targetClassName.includes('wrapper')) {
+        if (targetClassName.includes('banned')) {
+            targetDivContainer.className = 'character_item_wrapper'
+        } else {
+            targetDivContainer.className = 'character_item_wrapper banned'
+        }
+    }
+}
+
+function onChangeCharacterFindBox (event) {
+    console.log(event.target)
+}
+
+// <<<<<<< inner private function
+
+/**
+ * Array DeepCopy
+ * @param {Array} targetObject 
+ * @returns copied array
+ */
+function cloneDeep (targetObject) {
+    const clone = [];
+
+    targetObject.forEach(el => {
+        clone.push(el);
+    });
+
+    return clone;
+}
+
+function displayCharacters(charactersArray) {
+    const container = document.getElementById('character_container');
+    container.innerHTML = '';
+    const assetRoot = './assets/icon_face/';
+    // const assetRoot = './assets/namecard/'
 
     charactersArray.forEach(el => {
         const characterId = el.id;
@@ -56,7 +102,11 @@ function displayContainer(target) {
         characterENameElement.className = 'character_e_name';
         characterENameElement.textContent = characterEName;
 
+        let characterItemWrapperCover = document.createElement('div');
+        characterItemWrapperCover.className = 'character_item_wrapper_cover';
+
         // append character elements to character_area
+        characterItemWrapper.appendChild(characterItemWrapperCover);
         characterItemWrapper.appendChild(characterImageElement);
         characterItemWrapper.appendChild(characterHNameElement);
         characterItemWrapper.appendChild(characterENameElement);
@@ -64,47 +114,8 @@ function displayContainer(target) {
         // append character_area to character_wrapper
         container.appendChild(characterItemWrapper);
 
-        characterItemWrapper.addEventListener('click', selectCharacter);
+        characterItemWrapperCover.addEventListener('click', selectCharacter);
     })
-}
-
-/**
- * select character wrapper div, turn origin -> banned, banned -> origin 
- * @param {*} event
- * should to refactoring
- */
-function selectCharacter (event) {
-    let targetClassName = event.target.className;
-
-    // click wrapper itself
-    if (targetClassName.includes('wrapper')) {
-        if (targetClassName.includes('banned')) {
-            this.className = 'character_item_wrapper'
-        } else {
-            this.className = 'character_item_wrapper banned'
-        }
-    }
-}
-
-function onChangeCharacterFindBox (event) {
-    console.log(event.target)
-}
-
-// <<<<<<< inner private function
-
-/**
- * Array DeepCopy
- * @param {Array} targetObject 
- * @returns copied array
- */
-function cloneDeep (targetObject) {
-    const clone = [];
-
-    targetObject.forEach(el => {
-        clone.push(el);
-    });
-
-    return clone;
 }
 
 // <<<<<<< init function after window onloaded
@@ -113,6 +124,13 @@ function initInputBox() {
     inputBox.addEventListener('input', (input) => {
         let newValue = input.target.value;
         inputBox.value = newValue;
+        
+        if (newValue === '') {
+            displayCharacters(charactersArray)
+        } else {
+            filteredArray = cloneDeep(charactersArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
+            displayCharacters(filteredArray);
+        }
     })
 }
 

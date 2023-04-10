@@ -1,28 +1,28 @@
 {    
     "characters": [
         {
-            "id": "big",
-            "h_name": "한글이름1",
-            "e_name": "big",
-            "image": "big"
+            "id": "admire_vega",
+            "h_name": "어드마이어 베가",
+            "e_name": "admire_vega",
+            "image": "admire_vega"
         },
         {
-            "id": "agemasen",
-            "h_name": "한글이름2",
-            "e_name": "agemasen",
-            "image": "agemasen"
+            "id": "agnes_digital",
+            "h_name": "아그네스 디지털",
+            "e_name": "agnes_digital",
+            "image": "agnes_digital"
         },
         {
-            "id": "curren",
-            "h_name": "한글이름3",
-            "e_name": "curren",
-            "image": "curren"
+            "id": "agnes_tachyon",
+            "h_name": "아그네스 타키온",
+            "e_name": "agnes_tachyon",
+            "image": "agnes_tachyon"
         },
         {
-            "id": "city",
-            "h_name": "한글이름4",
-            "e_name": "city",
-            "image": "city"
+            "id": "sakura_chiyono_o",
+            "h_name": "사쿠라 치요노 오",
+            "e_name": "sakura_chiyono_o",
+            "image": "sakura_chiyono_o"
         }
     ]
 }
