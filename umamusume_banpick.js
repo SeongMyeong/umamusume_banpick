@@ -7,23 +7,6 @@ let nowRoundCount = 1;
 let totalRoundCount = 3;
 
 /**
- * Read Characters Information
- */
-document.getElementById("input_file").onchange = () => {
-    event.preventDefault(); //submit 할때 새로고침 되는것을 방지
-    let fileObject = document.getElementById("input_file");
-    let fileName = fileObject.files[0];
-
-    let fr = new FileReader();
-    fr.readAsText(fileName, "utf-8");
-
-    // after file loaded
-    fr.onload = () => {
-        initContainer(fr.result);
-    }
-}
-
-/**
  * select character wrapper div, turn origin -> banned, banned -> origin 
  * @param {*} event
  * should to refactoring
@@ -45,7 +28,16 @@ function selectCharacter (event) {
 
 // change character input text box (filter uma)
 function onChangeCharacterFindBox (event) {
+    let newValue = event.target.value;
+    const inputBox = document.getElementById('character_find_input')
+    inputBox.value = newValue;
     
+    if (newValue === '') {
+        displayCharacters(charactersArray)
+    } else {
+        filteredArray = cloneDeep(charactersArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
+        displayCharacters(filteredArray);
+    }
 }
 
 // <<<<<<< inner private function
@@ -118,7 +110,7 @@ function displayBanPickBoard () {
     const container = document.getElementById('banpick_container');
     container.innerHTML = '';
 
-    for (let i = 0; i < totalRoundCount; i++) {
+    for (let i = 1; i < totalRoundCount + 1; i++) {
         const banPickItemContainer = document.createElement('div');
         banPickItemContainer.className = "banpick_item_container";
         banPickItemContainer.id = "banpick_item_container_" + i;
@@ -140,24 +132,6 @@ function displayBanPickBoard () {
 }
 
 // <<<<<<< init function after window onloaded
-/**
- * Initialize input text box
- */
-function initInputBox() {
-    const inputBox = document.getElementById('character_find_input')
-    inputBox.addEventListener('input', (input) => {
-        let newValue = input.target.value;
-        inputBox.value = newValue;
-        
-        if (newValue === '') {
-            displayCharacters(charactersArray)
-        } else {
-            filteredArray = cloneDeep(charactersArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
-            displayCharacters(filteredArray);
-        }
-    })
-}
-
 /**
  * Initialize character display area
  */
@@ -183,15 +157,35 @@ function initBanPickBoard () {
     displayBanPickBoard();
 }
 
-
 // <<<<<<<< window/document event
 window.onload = (event) => {
     // initialize total round
-    initTotalRound();
-
-    // initialize input box
-    initInputBox();
+    // initTotalRound();
 
     // initialize ban/pick board
     initBanPickBoard();
 };
+
+/**
+ * File read event
+ */
+document.getElementById("input_file").onchange = () => {
+    event.preventDefault(); //submit 할때 새로고침 되는것을 방지
+    let fileObject = document.getElementById("input_file");
+    let fileName = fileObject.files[0];
+
+    let fr = new FileReader();
+    fr.readAsText(fileName, "utf-8");
+
+    // after file loaded
+    fr.onload = () => {
+        initContainer(fr.result);
+    }
+}
+
+/**
+ * Character find input box event
+ */
+document.getElementById('character_find_input').oninput = (event) => {
+    onChangeCharacterFindBox(event)
+}
