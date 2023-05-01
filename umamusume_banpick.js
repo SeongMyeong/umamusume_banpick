@@ -24,17 +24,6 @@ document.getElementById("input_file").onchange = () => {
 }
 
 /**
- * Container container display
- */
-function initContainer(target) {
-    const targetArray = JSON.parse(target)["characters"];
-    charactersArray = cloneDeep(targetArray);
-
-    displayCharacters(charactersArray)
-    
-}
-
-/**
  * select character wrapper div, turn origin -> banned, banned -> origin 
  * @param {*} event
  * should to refactoring
@@ -57,12 +46,6 @@ function selectCharacter (event) {
 // change character input text box (filter uma)
 function onChangeCharacterFindBox (event) {
     
-}
-
-// initianlize total round count
-function initTotalRound () {
-    const inputTotalRound = prompt("최대 라운드는 몇라운드? (미입력시 3라운드)")
-    totalRoundCount = inputTotalRound ? inputTotalRound : DEFAULT_ROUND_COUNT;
 }
 
 // <<<<<<< inner private function
@@ -131,7 +114,35 @@ function displayCharacters(charactersArray) {
     })
 }
 
+function displayBanPickBoard () {
+    const container = document.getElementById('banpick_container');
+    container.innerHTML = '';
+
+    for (let i = 0; i < totalRoundCount; i++) {
+        const banPickItemContainer = document.createElement('div');
+        banPickItemContainer.className = "banpick_item_container";
+        banPickItemContainer.id = "banpick_item_container_" + i;
+
+        container.appendChild(banPickItemContainer);
+
+        const banItemContainer = document.createElement('div');
+
+        banItemContainer.className = "ban_item_container";
+        banItemContainer.id = "ban_item_container_" + i;
+
+        const pickItemContainer = document.createElement('div');
+        pickItemContainer.className = "pick_item_container";
+        pickItemContainer.id = "pick_item_container_" + i;
+
+        banPickItemContainer.appendChild(banItemContainer);
+        banPickItemContainer.appendChild(pickItemContainer);
+    }
+}
+
 // <<<<<<< init function after window onloaded
+/**
+ * Initialize input text box
+ */
 function initInputBox() {
     const inputBox = document.getElementById('character_find_input')
     inputBox.addEventListener('input', (input) => {
@@ -147,6 +158,32 @@ function initInputBox() {
     })
 }
 
+/**
+ * Initialize character display area
+ */
+function initContainer(target) {
+    const targetArray = JSON.parse(target)["characters"];
+    charactersArray = cloneDeep(targetArray);
+
+    displayCharacters(charactersArray)
+}
+
+/**
+ * Initialize total round count
+ */
+function initTotalRound () {
+    const inputTotalRound = prompt("최대 라운드 입력 (미입력시 3라운드, 숫자만 입력)")
+    totalRoundCount = inputTotalRound ? parseInt(inputTotalRound) : parseInt(DEFAULT_ROUND_COUNT);
+}
+
+/**
+ * Initialize ban pick board
+ */
+function initBanPickBoard () {
+    displayBanPickBoard();
+}
+
+
 // <<<<<<<< window/document event
 window.onload = (event) => {
     // initialize total round
@@ -154,4 +191,7 @@ window.onload = (event) => {
 
     // initialize input box
     initInputBox();
+
+    // initialize ban/pick board
+    initBanPickBoard();
 };
