@@ -4,6 +4,8 @@ let charactersArray = [];
 let filteredArray = [];
 
 let nowRoundCount = 1;
+let totalRoundCount = 3;
+
 /**
  * Read Characters Information
  */
@@ -55,6 +57,12 @@ function selectCharacter (event) {
 // change character input text box (filter uma)
 function onChangeCharacterFindBox (event) {
     
+}
+
+// initianlize total round count
+function initTotalRound () {
+    const inputTotalRound = prompt("최대 라운드는 몇라운드? (미입력시 3라운드)")
+    totalRoundCount = inputTotalRound ? inputTotalRound : DEFAULT_ROUND_COUNT;
 }
 
 // <<<<<<< inner private function
@@ -141,5 +149,9 @@ function initInputBox() {
 
 // <<<<<<<< window/document event
 window.onload = (event) => {
+    // initialize total round
+    initTotalRound();
+
+    // initialize input box
     initInputBox();
 };
