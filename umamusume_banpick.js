@@ -1,9 +1,13 @@
+let DEFAULT_ROUND_COUNT = 3;
+
 let charactersArray = [];
 let filteredArray = [];
+
+let nowRoundCount = 1;
 /**
  * Read Characters Information
  */
-function readFile(event) {
+document.getElementById("input_file").onchange = () => {
     event.preventDefault(); //submit 할때 새로고침 되는것을 방지
     let fileObject = document.getElementById("input_file");
     let fileName = fileObject.files[0];
@@ -48,8 +52,9 @@ function selectCharacter (event) {
     }
 }
 
+// change character input text box (filter uma)
 function onChangeCharacterFindBox (event) {
-    console.log(event.target)
+    
 }
 
 // <<<<<<< inner private function
@@ -134,6 +139,7 @@ function initInputBox() {
     })
 }
 
+// <<<<<<<< window/document event
 window.onload = (event) => {
     initInputBox();
 };
