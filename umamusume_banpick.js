@@ -6,6 +6,8 @@ let filteredArray = [];
 let nowRoundCount = 1;
 let totalRoundCount = 3;
 
+let roundBanHorse = [];
+
 /**
  * select character wrapper div, turn origin -> banned, banned -> origin 
  * @param {*} event
@@ -56,6 +58,7 @@ function onClickLockOnButton (event) {
     
     nowRoundCount += 1;
     displayBanPickBoard();
+    displayCharacters(charactersArray);
 }
 
 // <<<<<<< inner private function
