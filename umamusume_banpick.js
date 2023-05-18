@@ -15,15 +15,25 @@ function selectCharacter (event) {
     let targetDiv = event.target;
     let targetDivContainer = $(targetDiv).parent()[0];
     let targetClassName = targetDivContainer.className;
-
+    let checked = false;
     // click wrapper itself
     if (targetClassName.includes('wrapper')) {
         if (targetClassName.includes('banned')) {
             targetDivContainer.className = 'character_item_wrapper'
+            checked = true
         } else {
             targetDivContainer.className = 'character_item_wrapper banned'
         }
     }
+
+    checkCharacterOnBan(targetDivContainer, checked);
+}
+
+function checkCharacterOnBan(element, checked) {
+    const banItemContainer = document.getElementById("ban_item_container_" + nowRoundCount);
+    const copyedElement = element.cloneNode(true);
+    if (checked) banItemContainer.innerHTML = "";
+    else banItemContainer.appendChild(copyedElement);
 }
 
 // change character input text box (filter uma)
@@ -38,6 +48,14 @@ function onChangeCharacterFindBox (event) {
         filteredArray = cloneDeep(charactersArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
         displayCharacters(filteredArray);
     }
+}
+
+// Click LockOn Button, disable now round.
+function onClickLockOnButton (event) {
+    if (nowRoundCount === totalRoundCount) return;
+    
+    nowRoundCount += 1;
+    displayBanPickBoard();
 }
 
 // <<<<<<< inner private function
@@ -106,29 +124,28 @@ function displayCharacters(charactersArray) {
     })
 }
 
-function displayBanPickBoard () {
+function displayBanPickBoard (initCase = false) {
     const container = document.getElementById('banpick_container');
-    container.innerHTML = '';
+    
+    if (initCase) container.innerHTML = '';
 
-    for (let i = 1; i < totalRoundCount + 1; i++) {
-        const banPickItemContainer = document.createElement('div');
-        banPickItemContainer.className = "banpick_item_container";
-        banPickItemContainer.id = "banpick_item_container_" + i;
+    const banPickItemContainer = document.createElement('div');
+    banPickItemContainer.className = "banpick_item_container";
+    banPickItemContainer.id = "banpick_item_container_" + nowRoundCount;
 
-        container.appendChild(banPickItemContainer);
+    const banItemContainer = document.createElement('div');
 
-        const banItemContainer = document.createElement('div');
+    banItemContainer.className = "ban_item_container";
+    banItemContainer.id = "ban_item_container_" + nowRoundCount;
 
-        banItemContainer.className = "ban_item_container";
-        banItemContainer.id = "ban_item_container_" + i;
+    const pickItemContainer = document.createElement('div');
+    pickItemContainer.className = "pick_item_container";
+    pickItemContainer.id = "pick_item_container_" + nowRoundCount;
 
-        const pickItemContainer = document.createElement('div');
-        pickItemContainer.className = "pick_item_container";
-        pickItemContainer.id = "pick_item_container_" + i;
+    banPickItemContainer.appendChild(banItemContainer);
+    banPickItemContainer.appendChild(pickItemContainer);
 
-        banPickItemContainer.appendChild(banItemContainer);
-        banPickItemContainer.appendChild(pickItemContainer);
-    }
+    container.appendChild(banPickItemContainer);
 }
 
 // <<<<<<< init function after window onloaded
@@ -154,7 +171,7 @@ function initTotalRound () {
  * Initialize ban pick board
  */
 function initBanPickBoard () {
-    displayBanPickBoard();
+    displayBanPickBoard(true);
 }
 
 // <<<<<<<< window/document event
