@@ -81,7 +81,7 @@ function cloneDeep (targetObject) {
 function displayCharacters(charactersArray) {
     const container = document.getElementById('character_container');
     container.innerHTML = '';
-    const assetRoot = './assets/icon_face/';
+    const assetRoot = './assets/images/icon_face/';
     // const assetRoot = './assets/namecard/'
 
     charactersArray.forEach(el => {
