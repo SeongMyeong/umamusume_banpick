@@ -23,11 +23,13 @@ body {
 
 .banpick_container .banpick_item_container .ban_item_container {
   width: 35%;
+  display: flex;
   border-style: solid;
 }
 
 .banpick_container .banpick_item_container .pick_item_container {
   width: 65%;
+  display: flex;
   border-style: solid;
 }
 
