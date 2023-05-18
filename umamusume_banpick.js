@@ -34,6 +34,8 @@ function selectCharacter (event) {
 function checkCharacterOnBan(element, checked) {
     const banItemContainer = document.getElementById("ban_item_container_" + nowRoundCount);
     const copyedElement = element.cloneNode(true);
+    copyedElement.className = 'character_item_wrapper';
+
     if (checked) banItemContainer.innerHTML = "";
     else banItemContainer.appendChild(copyedElement);
 }
@@ -141,13 +143,17 @@ function displayBanPickBoard (initCase = false) {
     banItemContainer.className = "ban_item_container";
     banItemContainer.id = "ban_item_container_" + nowRoundCount;
 
-    const pickItemContainer = document.createElement('div');
-    pickItemContainer.className = "pick_item_container";
-    pickItemContainer.id = "pick_item_container_" + nowRoundCount;
-
     banPickItemContainer.appendChild(banItemContainer);
-    banPickItemContainer.appendChild(pickItemContainer);
 
+    // const pickItemContainer = document.createElement('div');
+    // pickItemContainer.className = "pick_item_container";
+    // pickItemContainer.id = "pick_item_container_" + nowRoundCount;
+
+    // banPickItemContainer.appendChild(pickItemContainer);
+    
+    const textNode = document.createTextNode(nowRoundCount + '라운드');
+    banPickItemContainer.appendChild(textNode);
+    
     container.appendChild(banPickItemContainer);
 }
 
