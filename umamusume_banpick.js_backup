@@ -1,17 +1,12 @@
-let DEFAULT_ROUND_COUNT = 7;        // 라운드 미입력 시 초기 라운드
+let DEFAULT_ROUND_COUNT = 3;
 
-let initCharacterArray = [];        // Character.json 으로 읽어 온 캐릭터 목록
-let displayCharacterArray = [];     // Input 을 이용한 search 등을 사용하기 위한 캐릭터 목록
-let filteredCharacterArray = [];    // -> initCharacterArray.filter 로 처리하며, 라운드 완료  후 initCharacterArray 로 초기화
+let charactersArray = [];
+let filteredArray = [];
 
-let roundSelectedCharacter = [DEFAULT_ROUND_COUNT - 1];    // 라운드 별 선택 한 캐릭터 배열
-let banSelectedCharacter = [];      // 특정 라운드에 선택 한 캐릭터 배열
+let nowRoundCount = 1;
+let totalRoundCount = 3;
 
-let nowRoundCount = 0;
-let totalRoundCount = DEFAULT_ROUND_COUNT;
-
-const assetRoot = './assets/images/icon_face/';
-const namecardRoot = './assets/namecard/';
+let roundBanHorse = [];
 
 /**
  * select character wrapper div, turn origin -> banned, banned -> origin 
@@ -23,40 +18,26 @@ function selectCharacter (event) {
     let targetDivContainer = $(targetDiv).parent()[0];
     let targetClassName = targetDivContainer.className;
     let checked = false;
-    
-    const selectedCharacterId = event.target.id;
-    checkCharacterOnBan(selectedCharacterId, checked);
-}
-
-// Check Character
-function checkCharacterOnBan(selectedCharacterId, checked) {
-    const temp = [];
-    // already include character
-    if (banSelectedCharacter.includes(selectedCharacterId)) {
-        banSelectedCharacter = banSelectedCharacter.filter(el => el !== selectedCharacterId);
-    } else {
-        banSelectedCharacter.push(selectedCharacterId);
+    // click wrapper itself
+    if (targetClassName.includes('wrapper')) {
+        if (targetClassName.includes('banned')) {
+            targetDivContainer.className = 'character_item_wrapper'
+            checked = true
+        } else {
+            targetDivContainer.className = 'character_item_wrapper banned'
+        }
     }
-    
-    roundSelectedCharacter[nowRoundCount] = banSelectedCharacter;
-    console.log(roundSelectedCharacter);
-    
-    displayCharacters(displayCharacterArray)
-    displayBanPickBoardCharacter(banSelectedCharacter)
+
+    checkCharacterOnBan(targetDivContainer, checked);
 }
 
-function displayBanPickBoardCharacter(characterArray) {
-    const banContainer = document.getElementById("ban_item_container_" + nowRoundCount)
-    banContainer.innerHTML = "";
+function checkCharacterOnBan(element, checked) {
+    const banItemContainer = document.getElementById("ban_item_container_" + nowRoundCount);
+    const copyedElement = element.cloneNode(true);
+    copyedElement.className = 'character_item_wrapper';
 
-    characterArray.map(el => {
-        const namecardImage = namecardRoot + el + ".png";
-        let namecardImageElement = document.createElement('img');
-        namecardImageElement.className = 'ban_character_namecard'
-        namecardImageElement.src = namecardImage;
-
-        banContainer.append(namecardImageElement);
-    })
+    if (checked) banItemContainer.innerHTML = "";
+    else banItemContainer.appendChild(copyedElement);
 }
 
 // change character input text box (filter uma)
@@ -66,23 +47,20 @@ function onChangeCharacterFindBox (event) {
     inputBox.value = newValue;
     
     if (newValue === '') {
-        displayCharacters(displayCharacterArray)
+        displayCharacters(charactersArray)
     } else {
-        // filteredCharacterArray = cloneDeep(displayCharacterArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
-        filteredCharacterArray = cloneDeep(displayCharacterArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
-        displayCharacters(filteredCharacterArray);
+        filteredArray = cloneDeep(charactersArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
+        displayCharacters(filteredArray);
     }
 }
 
 // Click LockOn Button, disable now round.
 function onClickLockOnButton (event) {
-    if (nowRoundCount + 1 === totalRoundCount) return;
+    if (nowRoundCount === totalRoundCount) return;
     
     nowRoundCount += 1;
-    banSelectedCharacter = [];
-
-    // displayBanPickBoard();
-    displayCharacters(initCharacterArray);
+    displayBanPickBoard();
+    displayCharacters(charactersArray);
 }
 
 // <<<<<<< inner private function
@@ -102,30 +80,22 @@ function cloneDeep (targetObject) {
     return clone;
 }
 
-// display character board
 function displayCharacters(charactersArray) {
     const container = document.getElementById('character_container');
     container.innerHTML = '';
+    const assetRoot = './assets/images/icon_face/';
+    // const assetRoot = './assets/namecard/'
 
     charactersArray.forEach(el => {
         const characterId = el.id;
         const characterHName = el.h_name;
         const characterEName = el.e_name;
-        const characterImage = assetRoot + characterId + '.png';
+        const characterImage = assetRoot + el.image + '.png';
 
         // make character area element
         let characterItemWrapper = document.createElement('div');
-        if (typeof roundSelectedCharacter[nowRoundCount] === "object") {
-            if (roundSelectedCharacter[nowRoundCount].includes(el.id)) {
-                characterItemWrapper.className = 'character_item_wrapper banned'; 
-            } else {
-                characterItemWrapper.className = 'character_item_wrapper'; 
-            }
-        } else {
-            characterItemWrapper.className = 'character_item_wrapper';
-        }
-    
-        // characterItemWrapper.id = characterId;
+        characterItemWrapper.className = 'character_item_wrapper';
+        characterItemWrapper.id = characterId;
         characterItemWrapper.style.borderStyle = 'solid';
 
         // make character image element
@@ -141,11 +111,10 @@ function displayCharacters(charactersArray) {
         // make character e_name element
         let characterENameElement = document.createElement('div');
         characterENameElement.className = 'character_e_name';
-        // characterENameElement.textContent = characterEName;
+        characterENameElement.textContent = characterEName;
 
         let characterItemWrapperCover = document.createElement('div');
         characterItemWrapperCover.className = 'character_item_wrapper_cover';
-        characterItemWrapperCover.id = characterId
 
         // append character elements to character_area
         characterItemWrapper.appendChild(characterItemWrapperCover);
@@ -165,34 +134,38 @@ function displayBanPickBoard (initCase = false) {
     
     if (initCase) container.innerHTML = '';
 
-    for (let i = 0; i < totalRoundCount; i++) {
-        const banPickItemContainer = document.createElement('div');
-        banPickItemContainer.className = "banpick_item_container";
-        banPickItemContainer.id = "banpick_item_container_" + i;
+    const banPickItemContainer = document.createElement('div');
+    banPickItemContainer.className = "banpick_item_container";
+    banPickItemContainer.id = "banpick_item_container_" + nowRoundCount;
 
-        const textNode = document.createTextNode((i + 1) + '라운드');
-        banPickItemContainer.appendChild(textNode);
+    const banItemContainer = document.createElement('div');
 
-        const banItemContainer = document.createElement('div');
+    banItemContainer.className = "ban_item_container";
+    banItemContainer.id = "ban_item_container_" + nowRoundCount;
+
+    banPickItemContainer.appendChild(banItemContainer);
+
+    // const pickItemContainer = document.createElement('div');
+    // pickItemContainer.className = "pick_item_container";
+    // pickItemContainer.id = "pick_item_container_" + nowRoundCount;
+
+    // banPickItemContainer.appendChild(pickItemContainer);
     
-        banItemContainer.className = "ban_item_container";
-        banItemContainer.id = "ban_item_container_" + i;
+    const textNode = document.createTextNode(nowRoundCount + '라운드');
+    banPickItemContainer.appendChild(textNode);
     
-        banPickItemContainer.appendChild(banItemContainer);
-        
-        container.appendChild(banPickItemContainer);
-    }
+    container.appendChild(banPickItemContainer);
 }
 
 // <<<<<<< init function after window onloaded
 /**
  * Initialize character display area
  */
-function initContainer(characterArray) {
-    initCharacterArray = cloneDeep(characterArray);
-    displayCharacterArray = cloneDeep(characterArray);
-    
-    displayCharacters(displayCharacterArray)
+function initContainer(target) {
+    const targetArray = JSON.parse(target)["characters"];
+    charactersArray = cloneDeep(targetArray);
+
+    displayCharacters(charactersArray)
 }
 
 /**
@@ -208,8 +181,6 @@ function initTotalRound () {
  */
 function initBanPickBoard () {
     displayBanPickBoard(true);
-    // initBanSelectedList();
-
 }
 
 // <<<<<<<< window/document event
@@ -234,8 +205,7 @@ document.getElementById("input_file").onchange = () => {
 
     // after file loaded
     fr.onload = () => {
-        const targetArray = JSON.parse(fr.result)["characters"];
-        initContainer(targetArray);
+        initContainer(fr.result);
     }
 }
 

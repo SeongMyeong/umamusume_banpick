@@ -3,26 +3,352 @@
         {
             "id": "admire_vega",
             "h_name": "어드마이어 베가",
-            "e_name": "admire_vega",
-            "image": "admire_vega"
+            "e_name": "admire_vega"
         },
         {
             "id": "agnes_digital",
             "h_name": "아그네스 디지털",
-            "e_name": "agnes_digital",
-            "image": "agnes_digital"
+            "e_name": "agnes_digital"
         },
-        {
+        {	
             "id": "agnes_tachyon",
             "h_name": "아그네스 타키온",
-            "e_name": "agnes_tachyon",
-            "image": "agnes_tachyon"
+            "e_name": "agnes_tachyon"
+        },
+        {
+            "id": "air_groove_normal",
+            "h_name": "에어그루브 노멀",
+            "e_name": "air_groove_normal"
+        },
+        {
+            "id": "air_groove_wed",
+            "h_name": "에어그루브 웨딩",
+            "e_name": "air_groove_wed"
+        },
+        {
+            "id": "biwa_hayahide_normal",
+            "h_name": "비와 하야히데 노멀",
+            "e_name": "biwa_hayahide_normal"
+        },
+        {
+            "id": "biwa_hayahide_xmas",
+            "h_name": "비와 하야히데 성탄절",
+            "e_name": "biwa_hayahide_xmas"
+        },
+        {
+            "id": "curren_chan",
+            "h_name": "카렌짱",
+            "e_name": "curren_chan"
+        },
+        {
+            "id": "daiwa_scarlett",
+            "h_name": "다이와 스칼렛",
+            "e_name": "daiwa_scarlett"
+        },
+        {
+            "id": "eishin_flash_normal",
+            "h_name": "에이신 플레시 노멀",
+            "e_name": "eishin_flash_normal"
+        },
+        {
+            "id": "eishin_flash_patissier",
+            "h_name": "에이신 플래시 파티시에",
+            "e_name": "eishin_flash_patissier"
+        },
+        {
+            "id": "el_condor_pasa_monk",
+            "h_name": "엘 콘도르 파사 수도사",
+            "e_name": "el_condor_pasa_monk"
+        },
+        {
+            "id": "el_condor_pasa_normal",
+            "h_name": "엘 콘도르 파사 노멀",
+            "e_name": "el_condor_pasa_normal"
+        },
+        {
+            "id": "fine_motion",
+            "h_name": "파인 모션",
+            "e_name": "fine_motion"
+        },
+        {
+            "id": "fuji_kiseki",
+            "h_name": "후지 키세키",
+            "e_name": "fuji_kiseki"
+        },
+        {
+            "id": "goldcity_fall",
+            "h_name": "골드시티 가을",
+            "e_name": "goldcity_fall"
+        },
+        {
+            "id": "goldcity_normal",
+            "h_name": "골드시티 노멀",
+            "e_name": "goldcity_normal"
+        },
+        {
+            "id": "goldship",
+            "h_name": "골드쉽",
+            "e_name": "goldship"
+        },
+        {
+            "id": "grass_wonder_heal",
+            "h_name": "그라스 원더 치유",
+            "e_name": "grass_wonder_heal"
+        },
+        {
+            "id": "grass_wonder_normal",
+            "h_name": "그라스 원더 노멀",
+            "e_name": "grass_wonder_normal"
+        },
+        {
+            "id": "haru_urara_newyear",
+            "h_name": "하루 우라라 신년",
+            "e_name": "haru_urara_newyear"
+        },
+        {
+            "id": "haru_urara_normal",
+            "h_name": "하루 우라라 노멀",
+            "e_name": "haru_urara_normal"
+        },
+        {
+            "id": "hishi_akebono",
+            "h_name": "히시 아케보노",
+            "e_name": "hishi_akebono"
+        },
+        {
+            "id": "hishi_amazon",
+            "h_name": "히시 아마존",
+            "e_name": "hishi_amazon"
+        },
+        {
+            "id": "kawakami_princess",
+            "h_name": "카와카미 프린세스",
+            "e_name": "kawakami_princess"
+        },
+        {
+            "id": "king_halo",
+            "h_name": "킹 헤일로",
+            "e_name": "king_halo"
+        },
+        {
+            "id": "kitasan_black",
+            "h_name": "키타산 블랙",
+            "e_name": "kitasan_black"
+        },
+        {
+            "id": "machikane_fukukitaru_fullarmor",
+            "h_name": "마치카네 후쿠키타루",
+            "e_name": "machikane_fukukitaru_fullarmor"
+        },
+        {
+            "id": "machikane_fukukitaru_normal",
+            "h_name": "마치카네 후쿠키타루 노멀",
+            "e_name": "machikane_fukukitaru_normal"
+        },
+        {
+            "id": "machikane_tannhauser",
+            "h_name": "마치칸 탄호이저",
+            "e_name": "machikane_tannhauser"
+        },
+        {
+            "id": "manhatten_cafe",
+            "h_name": "맨하탄 카페",
+            "e_name": "manhatten_cafe"
+        },
+        {
+            "id": "maruzensky_normal",
+            "h_name": "마루젠스키 노멀",
+            "e_name": "maruzensky_normal"
+        },
+        {
+            "id": "maruzensky_swim",
+            "h_name": "마루젠스키 수영복",
+            "e_name": "maruzensky_swim"
+        },
+        {
+            "id": "mayano_topgun_normal",
+            "h_name": "마야노 탑건 노멀",
+            "e_name": "mayano_topgun_normal"
+        },
+        {
+            "id": "mayano_topgun_wed",
+            "h_name": "마야노 탑건 웨딩",
+            "e_name": "mayano_topgun_wed"
+        },
+        {
+            "id": "meisho_doto",
+            "h_name": "메이쇼 도토",
+            "e_name": "meisho_doto"
+        },
+        {
+            "id": "mejiro_ardan",
+            "h_name": "메지로 아르당",
+            "e_name": "mejiro_ardan"
+        },
+        {
+            "id": "mejiro_dober",
+            "h_name": "메지로 도베르",
+            "e_name": "mejiro_dober"
+        },
+        {
+            "id": "mejiro_mcqueen_normal",
+            "h_name": "메지로 맥퀸 노멀",
+            "e_name": "mejiro_mcqueen_normal"
+        },
+        {
+            "id": "mejiro_mcqueen_sky",
+            "h_name": "메지로 맥퀸 하늘",
+            "e_name": "mejiro_mcqueen_sky"
+        },
+        {
+            "id": "mejiro_ryan",
+            "h_name": "메지로 라이언",
+            "e_name": "mejiro_ryan"
+        },
+        {
+            "id": "mihono_bourbon_chocolate",
+            "h_name": "미호노 부르봉 초콜렛",
+            "e_name": "mihono_bourbon_chocolate"
+        },
+        {
+            "id": "mihono_bourbon_normal",
+            "h_name": "미호노 부르봉 노멀",
+            "e_name": "mihono_bourbon_normal"
+        },
+        {
+            "id": "narita_brian",
+            "h_name": "나리타 브라이언",
+            "e_name": "narita_brian"
+        },
+        {
+            "id": "narita_taishin",
+            "h_name": "나리타 타이신",
+            "e_name": "narita_taishin"
+        },
+        {
+            "id": "nice_nature",
+            "h_name": "나이스 네이쳐",
+            "e_name": "nice_nature"
+        },
+        {
+            "id": "oguri_cap_normal",
+            "h_name": "오구리 캡 노멀",
+            "e_name": "oguri_cap_normal"
+        },
+        {
+            "id": "oguri_cap_xmas",
+            "h_name": "오구리 캡 성탄절",
+            "e_name": "oguri_cap_xmas"
+        },
+        {
+            "id": "rice_shower_hall",
+            "h_name": "라이스 샤워 홀",
+            "e_name": "rice_shower_hall"
+        },
+        {
+            "id": "rice_shower_normal",
+            "h_name": "라이스 샤워 노멀",
+            "e_name": "rice_shower_normal"
+        },
+        {
+            "id": "sakura_bakusin_o",
+            "h_name": "사쿠라 박신 오",
+            "e_name": "sakura_bakusin_o"
         },
         {
             "id": "sakura_chiyono_o",
             "h_name": "사쿠라 치요노 오",
-            "e_name": "sakura_chiyono_o",
-            "image": "sakura_chiyono_o"
+            "e_name": "sakura_chiyono_o"
+        },
+        {
+            "id": "scilence_suzuka",
+            "h_name": "사일런스 스즈카",
+            "e_name": "scilence_suzuka"
+        },
+        {
+            "id": "seiun_sky",
+            "h_name": "세이운 스카이",
+            "e_name": "seiun_sky"
+        },
+        {
+            "id": "smart_falcon",
+            "h_name": "스마트 팔콘",
+            "e_name": "smart_falcon"
+        },
+        {
+            "id": "special_week_normal",
+            "h_name": "스페셜 위크 노멀",
+            "e_name": "special_week_normal"
+        },
+        {
+            "id": "special_week_swim",
+            "h_name": "스페셜 위크 수영복",
+            "e_name": "special_week_swim"
+        },
+        {
+            "id": "super_creek_mummy",
+            "h_name": "슈퍼 크릭 미라",
+            "e_name": "super_creek_mummy"
+        },
+        {
+            "id": "super_creek_normal",
+            "h_name": "슈퍼 크릭 노멀",
+            "e_name": "super_creek_normal"
+        },
+        {
+            "id": "symboli_rudolf_fall",
+            "h_name": "심볼리 루돌프 가을",
+            "e_name": "symboli_rudolf_fall"
+        },
+        {
+            "id": "symboli_rudolf_normal",
+            "h_name": "심볼리 루돌프 노멀",
+            "e_name": "symboli_rudolf_normal"
+        },
+        {
+            "id": "taiki_shuttle",
+            "h_name": "타이키 셔틀",
+            "e_name": "taiki_shuttle"
+        },
+        {
+            "id": "tamamo_cross",
+            "h_name": "타마모 크로스",
+            "e_name": "tamamo_cross"
+        },
+        {
+            "id": "tmoperao_newyear",
+            "h_name": "티엠오페라오 신년",
+            "e_name": "tmoperao_newyear"
+        },
+        {
+            "id": "tmoperao_normal",
+            "h_name": "티엠오페라오 노멀",
+            "e_name": "tmoperao_normal"
+        },
+        {
+            "id": "tokai_teio_fire",
+            "h_name": "토카이 데이오 불",
+            "e_name": "tokai_teio_fire"
+        },
+        {
+            "id": "tokai_teio_normal",
+            "h_name": "토카이 테이오 노멀",
+            "e_name": "tokai_teio_normal"
+        },
+        {
+            "id": "tosen_jordan",
+            "h_name": "토센 조던",
+            "e_name": "tosen_jordan"
+        },
+        {
+            "id": "vodka",
+            "h_name": "보드카",
+            "e_name": "vodka"
+        },
+        {
+            "id": "winning_ticket",
+            "h_name": "위닝 티켓",
+            "e_name": "winning_ticket"
         }
     ]
 }

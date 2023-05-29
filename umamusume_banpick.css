@@ -14,24 +14,29 @@ body {
 
 .banpick_container {
   width: 100%;
+  display: flex;
 }
 
 .banpick_container .banpick_item_container {
-  display: flex;
-  height: 200px;
+  /* display: flex; */
+  width: 100%;
 }
 
 .banpick_container .banpick_item_container .ban_item_container {
-  width: 35%;
-  display: flex;
+  /* width: 35%; */
+  /* display: flex; */
+  /* flex-direction: column; */
   /* border-style: solid; */
 }
 
-.banpick_container .banpick_item_container .pick_item_container {
+.banpick_container .banpick_item_container .ban_item_container .ban_character_namecard {
+  width: 100%;
+}
+
+/* .banpick_container .banpick_item_container .pick_item_container {
   width: 65%;
   display: flex;
-  /* border-style: solid; */
-}
+} */
 
 .character_container {
   display: flex;
