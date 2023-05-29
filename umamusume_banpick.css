@@ -14,6 +14,7 @@ body {
 
 .banpick_container {
   width: 100%;
+  height: 500px;
   display: flex;
 }
 
@@ -42,6 +43,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: 70%;
   /* justify-content: space-around; */
 }
 

@@ -136,9 +136,9 @@
             "e_name": "kitasan_black"
         },
         {
-            "id": "machikane_fukukitaru_fullarmor",
+            "id": "machikane_fukukitaru_full",
             "h_name": "마치카네 후쿠키타루",
-            "e_name": "machikane_fukukitaru_fullarmor"
+            "e_name": "machikane_fukukitaru_full"
         },
         {
             "id": "machikane_fukukitaru_normal",
@@ -261,9 +261,9 @@
             "e_name": "sakura_chiyono_o"
         },
         {
-            "id": "scilence_suzuka",
+            "id": "silence_suzuka",
             "h_name": "사일런스 스즈카",
-            "e_name": "scilence_suzuka"
+            "e_name": "silence_suzuka"
         },
         {
             "id": "seiun_sky",
