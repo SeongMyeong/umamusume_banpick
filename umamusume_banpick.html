@@ -9,16 +9,16 @@
             <button onclick="document.getElementById('input_file').click();">말딸 불러오기</button>
             <span id="fileName"> characters.json 선택하여 불러오세요 </span>
         </div>
-        <div class="character_container" id="character_container"> </div>
-        
-        <div style="border-style: solid;">
-            <input class="character_find_input" type="text" id="character_find_input"/>
-            <label>말딸 이름으로 검색</label>
-            <button onclick="onClickLockOnButton()">락온</button>
+        <div class="body_container">
+            <div class="character_container" id="character_container"></div>
+            
+            <div class="character_mid_container">
+                <input class="character_find_input" type="text" id="character_find_input"/>
+                <label>말딸 이름으로 검색</label>
+                <button onclick="onClickLockOnButton()">락온</button>
+            </div>
+            <div class="banpick_container" id="banpick_container"></div>
         </div>
-
-        <div class="banpick_container" id="banpick_container"></div>
-
         <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" src="./umamusume_banpick.js"></script>
     </body>

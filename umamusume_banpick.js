@@ -30,6 +30,8 @@ function selectCharacter (event) {
 
 // Check Character
 function checkCharacterOnBan(selectedCharacterId, checked) {
+    if (roundSelectedCharacter[nowRoundCount].length === 4) return;
+
     const temp = [];
     // already include character
     if (banSelectedCharacter.includes(selectedCharacterId)) {
