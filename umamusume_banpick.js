@@ -96,6 +96,19 @@ function onClickBanPickReady (event) {
     
 }
 
+// Click Random Button (Ban / Pick Randomly)
+function onClickRandomSelect (event) {
+    setTimeout(selectRandomCharacter(), 5000);
+}
+
+function selectRandomCharacter () {
+    setInterval(intervalSelectRandomCharacter(), 100);
+}
+
+function intervalSelectRandomCharacter () {
+    let index = Math.floor(Math.random() * max);
+}
+
 // <<<<<<< inner private function
 
 /**
