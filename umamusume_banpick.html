@@ -6,8 +6,9 @@
     <body>
         <div>
             <input type="file" id="input_file" style="display: none;">
-            <button onclick="document.getElementById('input_file').click();">말딸 불러오기</button>
-            <span id="fileName"> characters.json 선택하여 불러오세요 </span>
+            <image class="banner_image" src="./assets/images/banner/tx_uTex_fl_roulette_goalboard00_0_2.png" onclick="document.getElementById('input_file').click();"></image>
+            <!-- <button onclick="document.getElementById('input_file').click();">말딸 불러오기</button> -->
+            <!-- <span id="fileName"> characters.json 선택하여 불러오세요 </span> -->
         </div>
         <div class="body_container">
             <div class="character_container" id="character_container"></div>
@@ -15,7 +16,7 @@
             <div class="character_mid_container">
                 <input class="character_find_input" type="text" id="character_find_input"/>
                 <label>말딸 이름으로 검색</label>
-                <button onclick="onClickLockOnButton()">락온</button>
+                <button onclick="onClickLockOnButton()">다음라운드로</button>
             </div>
             <div class="banpick_container" id="banpick_container"></div>
         </div>
