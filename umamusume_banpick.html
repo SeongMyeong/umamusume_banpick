@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="./umamusume_banpick.css">
     </head>
     <body>
+        <div class="background_cover"></div>
         <div>
             <input type="file" id="input_file" style="display: none;">
             <image class="banner_image" src="./assets/images/banner/tx_uTex_fl_roulette_goalboard00_0_2.png" onclick="document.getElementById('input_file').click();"></image>
@@ -17,6 +18,7 @@
                 <input class="character_find_input" type="text" id="character_find_input"/>
                 <label>말딸 이름으로 검색</label>
                 <button onclick="onClickLockOnButton()">다음라운드로</button>
+                <button onclick="onClickBanPickReady()">밴완료</button>
             </div>
             <div class="banpick_container" id="banpick_container"></div>
         </div>

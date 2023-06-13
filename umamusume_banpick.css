@@ -10,6 +10,20 @@ body {
   font-family: 'uma';
   margin: 0;
   padding: 0;
+  
+}
+
+.background_cover {
+  background-image: url("./assets/background/bg_0056_00111.png");
+  opacity:0.5;
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index:-1;
 }
 
 .banpick_container {
@@ -23,11 +37,12 @@ body {
 .banpick_container .banpick_item_container {
   /* display: flex; */
   width: 100%;
-  height: 300px;
+  height: 400px;
   border: solid;
 }
 
 .banpick_container .banpick_item_container .ban_item_container {
+  height: 30%;
   /* width: 35%; */
   /* display: flex; */
   /* flex-direction: column; */
@@ -35,20 +50,20 @@ body {
 }
 
 .banpick_container .banpick_item_container .ban_item_container .ban_character_namecard {
-  width: 100%;
+  padding-top: 10px;
+  width: 30%;
 }
 
-/* .banpick_container .banpick_item_container .pick_item_container {
-  width: 65%;
-  display: flex;
-} */
+.banpick_container .banpick_item_container .pick_item_container {
+  height: 70%;
+}
 
 .body_container {
   height: 85vh;
   display: flex;
   flex-direction: column;
-  width: 90%;
-  padding-left: 5%;
+  width: 80%;
+  padding-left: 13%;
 }
 
 .banner_image {
@@ -65,6 +80,7 @@ body {
   flex-wrap: wrap;
   flex: 3;
   height: 60%;
+  width: 100%;
   overflow-y: auto;
   border: solid;
   /* margin-top: 200px; */
@@ -73,6 +89,7 @@ body {
 
 .character_mid_container {
   flex: 0.3;
+  width: 100%;
   border: solid;
 }
 
@@ -87,14 +104,18 @@ body {
 
 .character_item_wrapper {
   margin: 5px 5px 5px 5px;
-  width: 150px;
+  width: 98px;
   position: relative;
   text-align: center;
   align-items: center;
+  font-size: 10px;
+  white-space: pre;
+  overflow: auto;
 }
 
 .character_item_wrapper.banned {
   opacity: 30%;
+  background-color: yellow;
 }
 
 /* character image */

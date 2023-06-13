@@ -10,6 +10,9 @@ let banSelectedCharacter = [];      // 특정 라운드에 선택 한 캐릭터 
 let nowRoundCount = 0;
 let totalRoundCount = DEFAULT_ROUND_COUNT;
 
+let isRoundBanReady = false;
+let isRoundPickReady = false;
+
 const assetRoot = './assets/images/icon_face/';
 const namecardRoot = './assets/namecard/';
 
@@ -30,7 +33,7 @@ function selectCharacter (event) {
 
 // Check Character
 function checkCharacterOnBan(selectedCharacterId, checked) {
-    if (roundSelectedCharacter[nowRoundCount]?.length === 4) return;
+    // if (roundSelectedCharacter[nowRoundCount]?.length === 4) return;
 
     const temp = [];
     // already include character
@@ -52,7 +55,8 @@ function displayBanPickBoardCharacter(characterArray) {
     banContainer.innerHTML = "";
 
     characterArray.map(el => {
-        const namecardImage = namecardRoot + el + ".png";
+        // const namecardImage = namecardRoot + el + ".png";
+        const namecardImage = assetRoot + el + ".png";
         let namecardImageElement = document.createElement('img');
         namecardImageElement.className = 'ban_character_namecard'
         namecardImageElement.src = namecardImage;
@@ -85,6 +89,11 @@ function onClickLockOnButton (event) {
 
     // displayBanPickBoard();
     displayCharacters(initCharacterArray);
+}
+
+// Click Ban / Pick Ready
+function onClickBanPickReady (event) {
+    
 }
 
 // <<<<<<< inner private function
@@ -173,7 +182,9 @@ function displayBanPickBoard (initCase = false) {
         banPickItemContainer.id = "banpick_item_container_" + i;
 
         const textNode = document.createTextNode((i + 1) + '라운드');
-        banPickItemContainer.appendChild(textNode);
+        const textContainer = document.createElement('span');
+        textContainer.appendChild(textNode);
+        banPickItemContainer.appendChild(textContainer);
 
         const banItemContainer = document.createElement('div');
     
@@ -182,6 +193,13 @@ function displayBanPickBoard (initCase = false) {
     
         banPickItemContainer.appendChild(banItemContainer);
         
+        const pickItemContainer = document.createElement('div');
+    
+        pickItemContainer.className = "pick_item_container";
+        pickItemContainer.id = "pick_item_container_" + i;
+    
+        banPickItemContainer.appendChild(pickItemContainer);
+
         container.appendChild(banPickItemContainer);
     }
 }
