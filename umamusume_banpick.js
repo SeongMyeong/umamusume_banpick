@@ -4,10 +4,14 @@ let initCharacterArray = [];        // Character.json 으로 읽어 온 캐릭�
 let displayCharacterArray = [];     // Input 을 이용한 search 등을 사용하기 위한 캐릭터 목록
 let filteredCharacterArray = [];    // -> initCharacterArray.filter 로 처리하며, 라운드 완료  후 initCharacterArray 로 초기화
 
-let roundSelectedCharacter = [DEFAULT_ROUND_COUNT - 1];    // 라운드 별 선택 한 캐릭터 배열
-let banSelectedCharacter = [];      // 특정 라운드에 선택 한 캐릭터 배열
+let roundBannedCharacter = [];    // 라운드 별 밴 한 캐릭터 배열 (display)
+let roundPickedCharacter = [[], [], []];    // 라운드 별 픽 한 캐릭터 배열 (display)
 
-let nowRoundCount = 0;
+let pickSelectedCharacter = [];   // 특정 라운드에 픽 한 캐릭터
+
+let pickNumber = 0;
+
+let nowRoundCount = -1;
 let totalRoundCount = DEFAULT_ROUND_COUNT;
 
 let isRoundBanReady = false;
@@ -28,29 +32,51 @@ function selectCharacter (event) {
     let checked = false;
     
     const selectedCharacterId = event.target.id;
-    checkCharacterOnBan(selectedCharacterId, checked);
+    checkCharacterOnBanPick(selectedCharacterId, checked);
 }
 
 // Check Character
-function checkCharacterOnBan(selectedCharacterId, checked) {
-    // if (roundSelectedCharacter[nowRoundCount]?.length === 4) return;
+function checkCharacterOnBanPick(selectedCharacterId, checked) {
+    // Pick Time
+    if (isRoundBanReady) {
+        if (roundBannedCharacter.includes(selectedCharacterId)) {
+            alert("밴 캐릭터는 지금라운드에 선택할 수 없습니다.")
+            return;
+        }
+        if (pickSelectedCharacter.includes(selectedCharacterId)) {
+            pickSelectedCharacter = pickSelectedCharacter.filter(el => el !== selectedCharacterId);
+        } else {
+            if (pickSelectedCharacter.length === 3) {
+                alert("최대 3마리까지 선택이 가능합니다.")
+                return;
+            }
+            pickSelectedCharacter.push(selectedCharacterId)
+        }
 
-    const temp = [];
-    // already include character
-    if (banSelectedCharacter.includes(selectedCharacterId)) {
-        banSelectedCharacter = banSelectedCharacter.filter(el => el !== selectedCharacterId);
+        roundPickedCharacter[pickNumber] = pickSelectedCharacter;
+        
+        displayCharacters(displayCharacterArray)
+        displayPickBoardCharacter(pickSelectedCharacter)
     } else {
-        banSelectedCharacter.push(selectedCharacterId);
+        // Ban Time
+        if (roundBannedCharacter.includes(selectedCharacterId)) {
+            roundBannedCharacter = roundBannedCharacter.filter(el => el !== selectedCharacterId);
+        } else {
+            if (roundBannedCharacter.length === 2) {
+                alert("최대 3마리까지 선택이 가능합니다.")
+                return;
+            }
+            roundBannedCharacter.push(selectedCharacterId);
+        }
+        
+        // roundBannedCharacter[nowRoundCount] = banSelectedCharacter;
+        
+        displayCharacters(displayCharacterArray)
+        displayBanBoardCharacter(roundBannedCharacter)
     }
-    
-    roundSelectedCharacter[nowRoundCount] = banSelectedCharacter;
-    console.log(roundSelectedCharacter);
-    
-    displayCharacters(displayCharacterArray)
-    displayBanPickBoardCharacter(banSelectedCharacter)
 }
 
-function displayBanPickBoardCharacter(characterArray) {
+function displayBanBoardCharacter(characterArray) {
     const banContainer = document.getElementById("ban_item_container_" + nowRoundCount)
     banContainer.innerHTML = "";
 
@@ -63,6 +89,22 @@ function displayBanPickBoardCharacter(characterArray) {
 
         banContainer.append(namecardImageElement);
     })
+}
+
+function displayPickBoardCharacter(characterArray) {
+    const pickContainer = document.getElementById("pick_item_container_" + nowRoundCount + "_" + pickNumber);
+    pickContainer.innerHTML = "";
+
+    characterArray.map(el => {
+        // const namecardImage = namecardRoot + el + ".png";
+        const namecardImage = assetRoot + el + ".png";
+        let namecardImageElement = document.createElement('img');
+        namecardImageElement.className = 'pick_character_namecard'
+        namecardImageElement.src = namecardImage;
+
+        pickContainer.append(namecardImageElement);
+    })
+
 }
 
 // change character input text box (filter uma)
@@ -84,16 +126,51 @@ function onChangeCharacterFindBox (event) {
 function onClickLockOnButton (event) {
     if (nowRoundCount + 1 === totalRoundCount) return;
     
-    nowRoundCount += 1;
-    banSelectedCharacter = [];
+    initDatas();
 
     // displayBanPickBoard();
     displayCharacters(initCharacterArray);
 }
 
+function initDatas() {
+    pickSelectedCharacter = new Array();
+    roundPickedCharacter[0] = new Array();
+    roundPickedCharacter[1] = new Array();
+    roundPickedCharacter[2] = new Array();
+    roundBannedCharacter = new Array();
+
+    isRoundBanReady = false;
+    isRoundPickReady = false;
+    pickNumber = 0;
+    nowRoundCount += 1;
+
+    console.log("pickSelectedCharacter: ", pickSelectedCharacter)
+    console.log("roundPickedCharacter: ", roundPickedCharacter)
+    console.log("roundBannedCharacter: ", roundBannedCharacter)
+
+}
+
 // Click Ban / Pick Ready
-function onClickBanPickReady (event) {
+function onClickBanReady (event) {
+    if (isRoundBanReady || roundBannedCharacter.length === 0) {
+        alert("이미 밴이 완료되었거나, 최대 2마리까지 밴이 가능합니다.")
+        return;
+    }
+    isRoundBanReady = true;
+}
+
+function onClickPickReady (event) {
+    if (pickNumber === 2 || pickSelectedCharacter.length !== 3) {
+        alert("마지막 픽 이거나, 3마리가 선택되지 않았습니다.")
+        return;
+    }
+    pickNumber = (pickNumber + 1) % 3;
+    pickSelectedCharacter = roundPickedCharacter[pickNumber]
     
+    console.log("pickNumber: ", pickNumber, "character: ", pickSelectedCharacter)
+
+    displayCharacters(displayCharacterArray)
+    displayPickBoardCharacter(pickSelectedCharacter)
 }
 
 // Click Random Button (Ban / Pick Randomly)
@@ -134,20 +211,36 @@ function displayCharacters(charactersArray) {
     charactersArray.forEach(el => {
         const characterId = el.id;
         const characterHName = el.h_name;
-        const characterEName = el.e_name;
         const characterImage = assetRoot + characterId + '.png';
 
         // make character area element
         let characterItemWrapper = document.createElement('div');
-        if (typeof roundSelectedCharacter[nowRoundCount] === "object") {
-            if (roundSelectedCharacter[nowRoundCount].includes(el.id)) {
-                characterItemWrapper.className = 'character_item_wrapper banned'; 
-            } else {
-                characterItemWrapper.className = 'character_item_wrapper'; 
-            }
+
+        if (roundBannedCharacter.includes(el.id)) {
+            characterItemWrapper.className = 'character_item_wrapper banned'; 
+        } else if (pickSelectedCharacter.includes(el.id)) {
+            characterItemWrapper.className = 'character_item_wrapper picked';
         } else {
-            characterItemWrapper.className = 'character_item_wrapper';
+            characterItemWrapper.className = 'character_item_wrapper'; 
         }
+
+        // if (!isRoundBanReady && typeof roundBannedCharacter === "object") {
+        //     if (roundBannedCharacter.includes(el.id)) {
+        //         characterItemWrapper.className = 'character_item_wrapper banned'; 
+        //     } else {
+        //         characterItemWrapper.className = 'character_item_wrapper'; 
+        //     }
+
+        // } else if (!isRoundPickReady && pickSelectedCharacter === "object") {
+        //     console.log(pickSelectedCharacter)
+        //     if (pickSelectedCharacter.includes(el.id)) {
+        //         characterItemWrapper.className = 'character_item_wrapper picked';
+        //     } else {
+        //         characterItemWrapper.className = 'character_item_wrapper'; 
+        //     }
+        // } else {
+        //     characterItemWrapper.className = 'character_item_wrapper';
+        // }
     
         // characterItemWrapper.id = characterId;
         characterItemWrapper.style.borderStyle = 'solid';
@@ -206,12 +299,14 @@ function displayBanPickBoard (initCase = false) {
     
         banPickItemContainer.appendChild(banItemContainer);
         
-        const pickItemContainer = document.createElement('div');
+        for (let j = 0; j < 3; j++) {
+            const pickItemContainer = document.createElement('div');
     
-        pickItemContainer.className = "pick_item_container";
-        pickItemContainer.id = "pick_item_container_" + i;
-    
-        banPickItemContainer.appendChild(pickItemContainer);
+            pickItemContainer.className = "pick_item_container";
+            pickItemContainer.id = "pick_item_container_" + i + "_" + j;
+            banPickItemContainer.appendChild(pickItemContainer);    
+        }
+        
 
         container.appendChild(banPickItemContainer);
     }
@@ -252,6 +347,7 @@ window.onload = (event) => {
 
     // initialize ban/pick board
     initBanPickBoard();
+    initDatas();
 };
 
 /**
