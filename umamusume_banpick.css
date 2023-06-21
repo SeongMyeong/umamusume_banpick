@@ -39,8 +39,12 @@ body {
   width: 100%;
   height: 450px;
   border: solid;
+  text-align: center;
 }
 
+.banpick_container .banpick_item_container .banpick_round_text_container {
+  position: absolute;
+}
 .banpick_container .banpick_item_container .ban_item_container {
   height: 30%;
   display: flex;

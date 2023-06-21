@@ -144,10 +144,6 @@ function initDatas() {
     pickNumber = 0;
     nowRoundCount += 1;
 
-    console.log("pickSelectedCharacter: ", pickSelectedCharacter)
-    console.log("roundPickedCharacter: ", roundPickedCharacter)
-    console.log("roundBannedCharacter: ", roundBannedCharacter)
-
 }
 
 // Click Ban / Pick Ready
@@ -287,8 +283,10 @@ function displayBanPickBoard (initCase = false) {
         banPickItemContainer.className = "banpick_item_container";
         banPickItemContainer.id = "banpick_item_container_" + i;
 
-        const textNode = document.createTextNode((i + 1) + '라운드');
+        const textNode = document.createTextNode('RACE ' + (i + 1));
         const textContainer = document.createElement('span');
+        textContainer.className = "banpick_round_text_container";
+        textContainer.id = "banpick_round_text_container_" + i;
         textContainer.appendChild(textNode);
         banPickItemContainer.appendChild(textContainer);
 
@@ -343,7 +341,7 @@ function initBanPickBoard () {
 // <<<<<<<< window/document event
 window.onload = (event) => {
     // initialize total round
-    // initTotalRound();
+    initTotalRound();
 
     // initialize ban/pick board
     initBanPickBoard();
