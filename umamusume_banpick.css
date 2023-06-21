@@ -69,32 +69,50 @@ body {
 .banpick_container .banpick_item_container .pick_item_container {
   height: 23%;
   display: flex;
+  border-top: solid;
 }
 
 .banpick_container .banpick_item_container .ban_item_container .ban_character_namecard {
-  padding-top: 10px;
-  width: 50%;
+  padding-top: 35px;
+  width: 35%;
+  height: 58%;
+  margin: 0 auto;
 }
 
 .banpick_container .banpick_item_container .pick_item_container .pick_character_namecard {
-  padding-top: 10px;
-  width: 33%;
+  padding-top: 15px;
+  width: 30%;
+  height: 75%;
+  margin: 0 auto;
 }
 
 .body_container {
-  height: 85vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   width: 80%;
   padding-left: 13%;
+  padding-top: 5%;
+}
+
+.load_button {
+  position: absolute;
+  width: 50px;
+  height: 50px;
 }
 
 .banner_image {
-  height: 100px;
+  /* height: 100px;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
-  display: block;
+  display: block; */
+  position: absolute;
+  left: 23%;
+  top: -10%;
+  width: 55%;
+  height: 60%;
+  z-index: -10;
 }
 
 .character_container {
@@ -110,10 +128,62 @@ body {
   /* justify-content: space-around; */
 }
 
+.random_btn {
+  /* width: 100px;
+  height: 70%;
+  margin-top: auto;
+  margin-bottom: auto; */
+  width: 100px;
+  margin-top: -5px;
+  height: 70px;
+}
+
+.next_race_btn {
+  width: 100px;
+  margin-top: -10px;
+  height: 70px;
+  /* height: 30px; */
+  /* margin-top: auto; */
+  /* margin-bottom: auto; */
+}
+.ban_ready_btn {
+  width: 100px;
+  margin-top: -10px;
+  height: 70px;
+  /* height: 30px; */
+  /* margin-top: auto; */
+  /* margin-bottom: auto; */
+}
+.pick_ready_btn {
+  width: 100px;
+  margin-top: -10px;
+  height: 70px;
+  /* height: 30px; */
+  /* margin-top: auto; */
+  /* margin-bottom: auto; */
+}
+
 .character_mid_container {
   flex: 0.3;
   width: 100%;
   border: solid;
+  display: flex;
+  flex-direction: row;
+}
+
+.character_find_input {
+  width: 300px;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .character_item_wrapper_cover {

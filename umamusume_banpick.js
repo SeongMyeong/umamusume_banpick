@@ -1,4 +1,4 @@
-let DEFAULT_ROUND_COUNT = 3;        // 라운드 미입력 시 초기 라운드
+let DEFAULT_ROUND_COUNT = 7;        // 라운드 미입력 시 초기 라운드
 
 let initCharacterArray = [];        // Character.json 으로 읽어 온 캐릭터 목록
 let displayCharacterArray = [];     // Input 을 이용한 search 등을 사용하기 위한 캐릭터 목록
@@ -14,6 +14,7 @@ let pickNumber = 0;
 let nowRoundCount = -1;
 let totalRoundCount = DEFAULT_ROUND_COUNT;
 
+let isStart = true;
 let isRoundBanReady = false;
 let isRoundPickReady = false;
 
@@ -114,10 +115,14 @@ function onChangeCharacterFindBox (event) {
     inputBox.value = newValue;
     
     if (newValue === '') {
+        displayCharacterArray = cloneDeep(initCharacterArray)
         displayCharacters(displayCharacterArray)
     } else {
-        // filteredCharacterArray = cloneDeep(displayCharacterArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
+        // let tempArray = [];
+        // tempArray = cloneDeep(displayCharacterArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
+        // displayCharacterArray = cloneDeep(tempArray)
         filteredCharacterArray = cloneDeep(displayCharacterArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
+        
         displayCharacters(filteredCharacterArray);
     }
 }
@@ -144,6 +149,7 @@ function initDatas() {
     pickNumber = 0;
     nowRoundCount += 1;
 
+    changeBanPickStatus();
 }
 
 // Click Ban / Pick Ready
@@ -173,27 +179,39 @@ function onClickPickReady (event) {
 
 // Click Random Button (Ban / Pick Randomly)
 function onClickRandomSelect (event) {
-    setTimeout(selectRandomCharacter(), 5000);
+    let characterIndex = 0;
+
+    console.log("전체 인원: ", displayCharacterArray.length)
+    // 지금 선택 가능한 캐릭터의 수
+    const tempCharacterArray = displayCharacterArray.filter(character => {
+        return !roundBannedCharacter.includes(character.id)
+    }).filter(character => {
+        return !roundPickedCharacter[pickNumber].includes(character.id)
+    })
+    console.log(tempCharacterArray.length)
+    
+    // setTimeout(selectRandomCharacter(), 5000);
 }
 
 function selectRandomCharacter () {
-    setInterval(intervalSelectRandomCharacter(), 100);
+    // setInterval(intervalSelectRandomCharacter(), 100);
 }
 
 function intervalSelectRandomCharacter () {
-    let index = Math.floor(Math.random() * max);
+    // let index = Math.floor(Math.random() * max);
 }
 
 // <<<<<<< inner private function
 
 function changeBanPickStatus () {
+    if (isStart) return;
     const statusSpanElement = document.getElementById("ban_pick_status");
     statusSpanElement.innerText = "";
-
+    
     if (isRoundBanReady) {
-        statusSpanElement.innerText = "현재 " + (pickNumber+1) + "번 째 유저 선택시간"
+        statusSpanElement.innerText = (nowRoundCount+1) + " 라운드 "+ (pickNumber+1) + "번 유저 선택시간"
     } else {
-        statusSpanElement.innerText = "밴 캐릭터 선택 중"
+        statusSpanElement.innerText = (nowRoundCount+1) + " 라운드 밴 캐릭터 선택 중"
     }
 }
 
@@ -331,6 +349,7 @@ function initContainer(characterArray) {
     initCharacterArray = cloneDeep(characterArray);
     displayCharacterArray = cloneDeep(characterArray);
     
+    changeBanPickStatus();
     displayCharacters(displayCharacterArray)
 }
 
@@ -354,10 +373,9 @@ function initBanPickBoard () {
 // <<<<<<<< window/document event
 window.onload = (event) => {
     // initialize total round
-    initTotalRound();
+    // initTotalRound();
 
     // initialize ban/pick board
-    changeBanPickStatus();
     initBanPickBoard();
     initDatas();
 };
@@ -376,6 +394,7 @@ document.getElementById("input_file").onchange = () => {
     // after file loaded
     fr.onload = () => {
         const targetArray = JSON.parse(fr.result)["characters"];
+        isStart = false;
         initContainer(targetArray);
     }
 }

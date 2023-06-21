@@ -5,23 +5,29 @@
     </head>
     <body>
         <div class="background_cover"></div>
+        <!-- <image class="banner_image" src="./assets/images/banner/tx_uTex_fl_roulette_goalboard00_0_2.png" onclick="document.getElementById('input_file').click();"></image> -->
+        <!-- <image class="banner_image" src="./assets/images/banner/banner_green.png"></image> -->
+        <image class="banner_image" src="./assets/images/banner/score_board_banner.png"></image>
+        <image class="load_button" src="./assets/images/button/character_load_btn.png" onclick="document.getElementById('input_file').click();"></image>
         <div class="header_container">
             <input type="file" id="input_file" style="display: none;">
-            <image class="banner_image" src="./assets/images/banner/tx_uTex_fl_roulette_goalboard00_0_2.png" onclick="document.getElementById('input_file').click();"></image>
-            <span class="ban_pick_status" id="ban_pick_status">위 아이콘을 선택하여 캐릭터를 입력하세요 (characters.json 파일 선택)</span>
-            <!-- <button onclick="document.getElementById('input_file').click();">말딸 불러오기</button> -->
-            <!-- <span id="fileName"> characters.json 선택하여 불러오세요 </span> -->
         </div>
         <div class="body_container">
+            <!-- <image class="banner_image" src="./assets/images/banner/score_board_banner.png"></image> -->
+            <span class="ban_pick_status" id="ban_pick_status">왼쪽 위 아이콘을 선택하여 캐릭터를 입력하세요 (characters.json 파일 선택)</span>
             <div class="character_container" id="character_container"></div>
             
             <div class="character_mid_container">
-                <input class="character_find_input" type="text" id="character_find_input"/>
-                <label>말딸 이름으로 검색</label>
-                <!-- <button onclick="onClickRandomSelect()">랜덤선택</button> -->
+                <input class="character_find_input" type="text" id="character_find_input" placeholder="말딸 한글/영어로 검색"/>
+                <!-- <label>말딸 이름으로 검색</label> -->
+                <image class="random_btn" src="./assets/images/button/random_btn2.png" onclick="onClickRandomSelect()"></image>
+                <image class="next_race_btn" src="./assets/images/button/next_race_btn.png" onclick="onClickLockOnButton()"></image>
+                <image class="ban_ready_btn" src="./assets/images/button/ban_ready_btn.png" onclick="onClickBanReady()"></image>
+                <image class="pick_ready_btn" src="./assets/images/button/pick_ready_btn.png" onclick="onClickPickReady()"></image>
+                <!-- <button onclick="onClickRandomSelect()">랜덤선택</button>
                 <button onclick="onClickLockOnButton()">다음레이스</button>
                 <button onclick="onClickBanReady()">밴완료</button>
-                <button onclick="onClickPickReady()">픽완료</button>
+                <button onclick="onClickPickReady()">픽완료</button> -->
             </div>
             <div class="banpick_container" id="banpick_container"></div>
         </div>
