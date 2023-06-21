@@ -1,4 +1,4 @@
-let DEFAULT_ROUND_COUNT = 7;        // 라운드 미입력 시 초기 라운드
+let DEFAULT_ROUND_COUNT = 3;        // 라운드 미입력 시 초기 라운드
 
 let initCharacterArray = [];        // Character.json 으로 읽어 온 캐릭터 목록
 let displayCharacterArray = [];     // Input 을 이용한 search 등을 사용하기 위한 캐릭터 목록
@@ -153,6 +153,8 @@ function onClickBanReady (event) {
         return;
     }
     isRoundBanReady = true;
+
+    changeBanPickStatus();
 }
 
 function onClickPickReady (event) {
@@ -163,10 +165,10 @@ function onClickPickReady (event) {
     pickNumber = (pickNumber + 1) % 3;
     pickSelectedCharacter = roundPickedCharacter[pickNumber]
     
-    console.log("pickNumber: ", pickNumber, "character: ", pickSelectedCharacter)
-
     displayCharacters(displayCharacterArray)
     displayPickBoardCharacter(pickSelectedCharacter)
+
+    changeBanPickStatus();
 }
 
 // Click Random Button (Ban / Pick Randomly)
@@ -183,6 +185,17 @@ function intervalSelectRandomCharacter () {
 }
 
 // <<<<<<< inner private function
+
+function changeBanPickStatus () {
+    const statusSpanElement = document.getElementById("ban_pick_status");
+    statusSpanElement.innerText = "";
+
+    if (isRoundBanReady) {
+        statusSpanElement.innerText = "현재 " + (pickNumber+1) + "번 째 유저 선택시간"
+    } else {
+        statusSpanElement.innerText = "밴 캐릭터 선택 중"
+    }
+}
 
 /**
  * Array DeepCopy
@@ -344,6 +357,7 @@ window.onload = (event) => {
     initTotalRound();
 
     // initialize ban/pick board
+    changeBanPickStatus();
     initBanPickBoard();
     initDatas();
 };
