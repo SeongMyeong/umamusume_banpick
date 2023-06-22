@@ -197,14 +197,6 @@ function onClickRandomSelect (event) {
     checkCharacterOnBanPick(tempCharacterArray[characterIndex].id);
 }
 
-function selectRandomCharacter () {
-    // setInterval(intervalSelectRandomCharacter(), 100);
-}
-
-function intervalSelectRandomCharacter () {
-    // let index = Math.floor(Math.random() * max);
-}
-
 // <<<<<<< inner private function
 
 function changeBanPickStatus () {
@@ -255,25 +247,6 @@ function displayCharacters(charactersArray) {
             characterItemWrapper.className = 'character_item_wrapper'; 
         }
 
-        // if (!isRoundBanReady && typeof roundBannedCharacter === "object") {
-        //     if (roundBannedCharacter.includes(el.id)) {
-        //         characterItemWrapper.className = 'character_item_wrapper banned'; 
-        //     } else {
-        //         characterItemWrapper.className = 'character_item_wrapper'; 
-        //     }
-
-        // } else if (!isRoundPickReady && pickSelectedCharacter === "object") {
-        //     console.log(pickSelectedCharacter)
-        //     if (pickSelectedCharacter.includes(el.id)) {
-        //         characterItemWrapper.className = 'character_item_wrapper picked';
-        //     } else {
-        //         characterItemWrapper.className = 'character_item_wrapper'; 
-        //     }
-        // } else {
-        //     characterItemWrapper.className = 'character_item_wrapper';
-        // }
-    
-        // characterItemWrapper.id = characterId;
         characterItemWrapper.style.borderStyle = 'solid';
 
         // make character image element
