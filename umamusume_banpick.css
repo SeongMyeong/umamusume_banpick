@@ -134,6 +134,7 @@ body {
   height: 200px;
   position: absolute;
   bottom: -40px;
+  margin-left: 35px;
 }
 
 .body_container {
