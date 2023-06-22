@@ -40,10 +40,10 @@ function selectCharacter (event) {
 function checkCharacterOnBanPick(selectedCharacterId, checked) {
     // Pick Time
     if (isRoundBanReady) {
-        if (roundBannedCharacter.includes(selectedCharacterId)) {
-            alert("밴 캐릭터는 지금라운드에 선택할 수 없습니다.")
-            return;
-        }
+        // if (roundBannedCharacter.includes(selectedCharacterId)) {
+        //     alert("밴 캐릭터는 지금라운드에 선택할 수 없습니다.")
+        //     return;
+        // }
         if (pickSelectedCharacter.includes(selectedCharacterId)) {
             pickSelectedCharacter = pickSelectedCharacter.filter(el => el !== selectedCharacterId);
         } else {
@@ -101,6 +101,7 @@ function displayPickBoardCharacter(characterArray) {
         const namecardImage = assetRoot + el + ".png";
         let namecardImageElement = document.createElement('img');
         namecardImageElement.className = 'pick_character_namecard'
+        if (roundBannedCharacter.includes(el)) namecardImageElement.className = 'pick_character_namecard super_pass'
         namecardImageElement.src = namecardImage;
 
         pickContainer.append(namecardImageElement);
@@ -118,11 +119,7 @@ function onChangeCharacterFindBox (event) {
         displayCharacterArray = cloneDeep(initCharacterArray)
         displayCharacters(displayCharacterArray)
     } else {
-        // let tempArray = [];
-        // tempArray = cloneDeep(displayCharacterArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
-        // displayCharacterArray = cloneDeep(tempArray)
         filteredCharacterArray = cloneDeep(displayCharacterArray.filter(el => el.e_name.includes(newValue) || el.h_name.includes(newValue)));
-        
         displayCharacters(filteredCharacterArray);
     }
 }
@@ -180,17 +177,24 @@ function onClickPickReady (event) {
 // Click Random Button (Ban / Pick Randomly)
 function onClickRandomSelect (event) {
     let characterIndex = 0;
+    const isInputFilled = document.getElementById('character_find_input').value !== '';
 
-    console.log("전체 인원: ", displayCharacterArray.length)
-    // 지금 선택 가능한 캐릭터의 수
-    const tempCharacterArray = displayCharacterArray.filter(character => {
+    let tempCharacterArray = [];
+    if (isInputFilled) {
+        tempCharacterArray = cloneDeep(filteredCharacterArray)
+    } else {
+        tempCharacterArray = cloneDeep(displayCharacterArray)
+    }
+    
+    tempCharacterArray = tempCharacterArray.filter(character => {
         return !roundBannedCharacter.includes(character.id)
     }).filter(character => {
         return !roundPickedCharacter[pickNumber].includes(character.id)
-    })
-    console.log(tempCharacterArray.length)
+    });
     
-    // setTimeout(selectRandomCharacter(), 5000);
+    characterIndex = Math.floor(Math.random() * tempCharacterArray.length);
+    
+    checkCharacterOnBanPick(tempCharacterArray[characterIndex].id);
 }
 
 function selectRandomCharacter () {
