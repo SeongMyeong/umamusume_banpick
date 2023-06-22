@@ -14,7 +14,7 @@ body {
 }
 
 .background_cover {
-  background-image: url("./assets/background/bg_0056_00111.png");
+  background-image: url("./assets/background/background_cover.png");
   opacity:0.5;
   position:absolute;
   top:0;
