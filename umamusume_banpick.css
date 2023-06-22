@@ -108,9 +108,10 @@ body {
 } */
 
 .body_user_container .users_container .user_ban {
-  height: 200px;
+  height: 240px;
   position: absolute;
   bottom: 270px;
+  margin-left: -25px;
 }
 
 .body_user_container .users_container .user_kimchi {
@@ -126,7 +127,7 @@ body {
   height: 172px;
   position: absolute;
   bottom: 78px;
-  margin-left: 15px;
+  margin-left: 25px;
 }
 
 .body_user_container .users_container .user_bill {
@@ -134,7 +135,7 @@ body {
   height: 200px;
   position: absolute;
   bottom: -40px;
-  margin-left: 35px;
+  margin-left: 49px;
 }
 
 .body_container {
