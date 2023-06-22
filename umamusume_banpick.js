@@ -176,6 +176,10 @@ function onClickPickReady (event) {
 
 // Click Random Button (Ban / Pick Randomly)
 function onClickRandomSelect (event) {
+    if (isRoundBanReady) {
+        alert("픽 단계에서는 랜덤을 사용할 수 없습니다.")
+        return;
+    }
     let characterIndex = 0;
     const isInputFilled = document.getElementById('character_find_input').value !== '';
 
